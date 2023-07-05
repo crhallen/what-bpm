@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "bpm",
-    "slug": "bpm",
+    "name": "what-bpm",
+    "slug": "what-bpm",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "a254cb98-b8a5-446d-8eb5-ebe11efcbae6"
+      }
     }
   }
 }
