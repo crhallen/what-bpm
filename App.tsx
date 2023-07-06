@@ -9,7 +9,7 @@ import {
   View,
 } from "react-native";
 
-const LOOKBACK_LENGTH = 10;
+const LOOKBACK_LENGTH = 30;
 const MAX_TAP_GAP = 2; // 2 seconds
 
 const calculateBpm = (taps: number[]) => {
@@ -30,14 +30,14 @@ const calculateBpm = (taps: number[]) => {
 export default function App() {
   const [taps, setTaps] = useState<number[]>([]);
 
-  const handleTap = () => {
-    const nowInSeconds = Date.now() / 1000;
-    const hasTapWindowExpired = nowInSeconds - taps.at(-1)! > MAX_TAP_GAP;
+  const countTap = () => {
+    const newTapTimestamp = Date.now() / 1000;
+    const hasTapWindowExpired = newTapTimestamp - taps.at(-1)! > MAX_TAP_GAP;
 
     if (taps.length === 0 || hasTapWindowExpired) {
-      setTaps([nowInSeconds]);
+      setTaps([newTapTimestamp]);
     } else {
-      setTaps([...taps, nowInSeconds]);
+      setTaps([...taps, newTapTimestamp]);
     }
   };
 
@@ -69,7 +69,7 @@ export default function App() {
       <StatusBar style="light" />
       <Pressable
         onPressIn={(e) => {
-          handleTap();
+          countTap();
           doAnimation(e);
         }}
         style={({ pressed }) => [
@@ -81,6 +81,7 @@ export default function App() {
         ]}
       >
         {({ pressed }) => (
+          // @ts-ignore */
           <Text pointerEvents="none" style={styles.bpmText}>
             {calculateBpm(taps).toFixed(1)}
           </Text>
