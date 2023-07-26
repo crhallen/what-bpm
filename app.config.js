@@ -1,12 +1,12 @@
 module.exports = () => {
-  const identifier =
+  const props =
     process.env.APP_VARIANT === "production"
       ? { name: "What BPM", identifier: "com.crhallen.whatbpm" }
       : { name: "What BPM (Dev)", identifier: "dev.crhallen.whatbpm" };
 
   return {
     expo: {
-      name: "What BPM",
+      name: props.name,
       slug: "what-bpm",
       version: "1.0.0",
       orientation: "portrait",
@@ -20,14 +20,14 @@ module.exports = () => {
       assetBundlePatterns: ["**/*"],
       ios: {
         supportsTablet: true,
-        bundleIdentifier: identifier,
+        bundleIdentifier: props.identifier,
       },
       android: {
         adaptiveIcon: {
           foregroundImage: "./assets/adaptive-icon.png",
           backgroundColor: "#000000",
         },
-        package: identifier,
+        package: props.identifier,
       },
       web: {
         favicon: "./assets/favicon.png",
