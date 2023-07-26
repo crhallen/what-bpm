@@ -17,7 +17,11 @@
     "preview": {
       "distribution": "internal"
     },
-    "production": {}
+    "production": {
+      "env": {
+        "APP_VARIANT": "production"
+      }
+    }
   },
   "submit": {
     "production": {}
