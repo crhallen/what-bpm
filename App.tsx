@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import {
   Animated,
   GestureResponderEvent,
@@ -117,6 +117,8 @@ const styles = StyleSheet.create({
     height: 24,
     borderRadius: 12,
     backgroundColor: "rgba(255, 255, 255, 0.15)",
+    // backgroundColor:
+    //   "radial-gradient(transparent 45%, rgba(255, 255, 255, 0.15) 70%, transparent 70%)",
   },
   tapPanel: {
     flex: 1,
