@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 
+const INITIAL_TAPS_REQUIRED = 2;
 const LOOKBACK_LENGTH = 30;
 const MAX_TAP_GAP = 2; // 2 seconds
 
@@ -80,12 +81,13 @@ export default function App() {
           styles.tapPanel,
         ]}
       >
-        {({ pressed }) => (
-          // @ts-ignore */
-          <Text pointerEvents="none" style={styles.bpmText}>
-            {calculateBpm(taps).toFixed(1)}
-          </Text>
-        )}
+        {({ pressed }) =>
+          taps.length < INITIAL_TAPS_REQUIRED ? (
+            <Text style={styles.bpmText}>--</Text>
+          ) : (
+            <Text style={styles.bpmText}>{calculateBpm(taps).toFixed(1)}</Text>
+          )
+        }
       </Pressable>
       <Animated.View
         pointerEvents="none"
@@ -116,7 +118,7 @@ const styles = StyleSheet.create({
     width: 24,
     height: 24,
     borderRadius: 12,
-    backgroundColor: "rgba(255, 255, 255, 0.15)",
+    backgroundColor: "rgba(255, 255, 255, 0.18)",
     // backgroundColor:
     //   "radial-gradient(transparent 45%, rgba(255, 255, 255, 0.15) 70%, transparent 70%)",
   },
@@ -130,5 +132,6 @@ const styles = StyleSheet.create({
     fontSize: 80,
     textAlign: "center",
     color: "#fafafa",
+    pointerEvents: "none",
   },
 });
